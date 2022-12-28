@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+// @ts-nocheck
 import { useWallet } from '@cosmos-kit/react';
 import { Dialog } from '@headlessui/react';
 import {
