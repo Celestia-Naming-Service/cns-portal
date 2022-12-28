@@ -31,7 +31,7 @@ function CreateCosmosApp({ Component, pageProps }: AppProps) {
       walletModal={TailwindModal}
     >
       <ThemeProvider>
-        <div className="min-h-screen text-black bg-white dark:bg-gray-bg dark:text-white">
+        <div className="min-h-screen ">
           <Component {...pageProps} />
         </div>
       </ThemeProvider>
