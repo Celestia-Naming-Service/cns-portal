@@ -54,14 +54,6 @@ export default function Index() {
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
@@ -78,7 +70,7 @@ export default function Index() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+              <div className="fixed inset-0 bg-gray-600 " />
             </Transition.Child>
 
             <div className="fixed inset-0 z-40 flex">
@@ -116,11 +108,6 @@ export default function Index() {
                     </div>
                   </Transition.Child>
                   <div className="flex flex-shrink-0 items-center px-4">
-                    {/* <img
-                      className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=blue&shade=500"
-                      alt="Your Company"
-                    /> */}
                     <span className="text-2xl text-gray-300 hover:text-gray-100">
                       CNS Portal
                     </span>
@@ -166,7 +153,7 @@ export default function Index() {
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex min-h-0 flex-1 flex-col bg-gray-800">
             <div className="flex h-16 flex-shrink-0 items-center bg-gray-900 px-4">
-              <span className="text-2xl text-gray-300 hover:text-gray-100">
+              <span className="text-2xl text-gray-100 hover:text-gray-100">
                 <Link href={"/portal/dashboard"}>CNS Portal</Link>
               </span>
             </div>
