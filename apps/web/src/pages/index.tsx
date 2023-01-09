@@ -1,6 +1,4 @@
 import { useKeplr } from "./components/keplr";
-import { Disclosure } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 const faqs = [
   {
