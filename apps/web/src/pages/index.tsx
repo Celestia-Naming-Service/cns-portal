@@ -10,15 +10,22 @@ export default function Web() {
   const [KeplrComponentAddWallet, keplr] = useKeplr({ params: MOCHA_PARAMS });
   return (
     <div className="bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-yellow-500 via-purple-500 to-blue-500 h-screen">
-      <div className="flex min-h-full flex-col justify-center py-12 px-6 sm:px-6 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-100">
-            CNS Demo
-          </h2>
+      <div className="relative py-5 bg-white/10">
+        <div className="mx-auto max-w-7xl py-3 px-3 sm:px-6 lg:px-8">
+          <div className="sm:px-16 text-center">
+            <p className="sm:text-4xl text-3xl text-white/90">
+              <span>CNS</span>
+              <span className="overline">Demo</span>
+            </p>
+          </div>
         </div>
+      </div>
 
+      
+
+      <div className="py-12 px-6 sm:px-6 lg:px-8">
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md ">
-          <div className="bg-white rounded-md py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <div className="bg-white/90 rounded-md py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form className="space-y-6" method="POST" noValidate>
               <div>
                 <label
@@ -45,7 +52,7 @@ export default function Web() {
                     Claim your Name!
                   </button>
                 ) : (
-                  <div className="my-2">
+                  <div className="mt-5">
                     <KeplrComponentAddWallet />
                   </div>
                 )}
