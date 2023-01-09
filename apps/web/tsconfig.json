@@ -1,8 +1,13 @@
 {
   "compilerOptions": {
-      "target": "es2017"
+    "target": "es2017"
   },
   "extends": "tsconfig/nextjs.json",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/keplr.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/pages/components/keplr.tsx"
+  ],
   "exclude": ["node_modules"]
 }
