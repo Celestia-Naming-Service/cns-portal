@@ -9,18 +9,17 @@ const MOCHA_PARAMS = {
 export default function Web() {
   const [KeplrComponentAddWallet, keplr] = useKeplr({ params: MOCHA_PARAMS });
   return (
-    <div className="">
-      <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-yellow-500 via-purple-500 to-blue-500 h-screen">
+      <div className="flex min-h-full flex-col justify-center py-12 px-6 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <span className="text-3xl font-mono font-bold">CNS</span>
-          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-            Connect your wallet
+          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-100">
+            CNS Demo
           </h2>
         </div>
 
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-            <form className="space-y-6" action="#" method="POST">
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md ">
+          <div className="bg-white rounded-md py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <form className="space-y-6" method="POST" noValidate>
               <div>
                 <label
                   htmlFor="email"
@@ -31,7 +30,6 @@ export default function Web() {
                 <div className="mt-1">
                   <input
                     name="CNS Name"
-                    autoComplete="email"
                     required
                     className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm"
                   />
@@ -39,15 +37,18 @@ export default function Web() {
               </div>
 
               <div>
-                <div className="">
-                  <span className="">
-                    {keplr ? (
-                      <KeplrComponentAddWallet />
-                    ) : (
-                      <KeplrComponentAddWallet />
-                    )}
-                  </span>
-                </div>
+                <span className="items-center rounded border border-transparent bg-indigo-100 px-2.5 py-1.5 text-xs font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ">
+                  Connected {keplr && keplr.version ? "✅" : "❌"}
+                </span>
+                {keplr && keplr.version ? (
+                  <button className=" flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 mt-5">
+                    Claim your Name!
+                  </button>
+                ) : (
+                  <div className="my-2">
+                    <KeplrComponentAddWallet />
+                  </div>
+                )}
               </div>
             </form>
           </div>
