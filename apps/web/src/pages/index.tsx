@@ -1,14 +1,10 @@
 import { useKeplr } from "./components/keplr";
+import { Blob } from "proto";
+import { StdSignature } from "@keplr-wallet/types";
+import { useState } from "react";
 
-const faqs = [
-  {
-    id: 1,
-    question: "What's the best thing about Switzerland?",
-    answer:
-      "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
-  },
-  // More questions...
-];
+const writer = Blob.encode(Blob.create({ addressOwner: "test" }));
+const bytes = writer.finish();
 
 const MOCHA_PARAMS = {
   chainId: "mocha",
@@ -17,7 +13,8 @@ const MOCHA_PARAMS = {
   rest: "https://api-mocha.pops.one/",
 };
 export default function Web() {
-  const [KeplrComponentAddWallet, keplr] = useKeplr({ params: MOCHA_PARAMS });
+  const [signed, setSigned] = useState();
+  const [KeplrComponentAddWallet, keplrSigner] = useKeplr({ params: MOCHA_PARAMS });
   return (
     <div className="bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-yellow-500 via-purple-500 to-blue-500">
       <div className="relative py-5 bg-white/10">
@@ -53,10 +50,10 @@ export default function Web() {
 
               <div>
                 <span className="items-center rounded border border-transparent bg-indigo-100 px-2.5 py-1.5 text-xs font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ">
-                  Connected {keplr && keplr.version ? "✅" : "❌"}
+                  Connected {keplrSigner ? "✅" : "❌"}
                 </span>
-                {keplr && keplr.version ? (
-                  <button className=" flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 mt-5">
+                {keplrSigner ? (
+                  <button onClick={() => keplrSigner(bytes)} className=" flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 mt-5">
                     Claim your Name!
                   </button>
                 ) : (
@@ -64,6 +61,7 @@ export default function Web() {
                     <KeplrComponentAddWallet />
                   </div>
                 )}
+                {signed}
               </div>
             </form>
           </div>

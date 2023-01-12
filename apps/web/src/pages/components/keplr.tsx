@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { StdSignature } from "@keplr-wallet/types"
 
-type Keplr = typeof window.keplr;
+type Keplr = NonNullable<typeof window.keplr>;
 type Params = {
   chainId: string;
   chainName: string;
@@ -10,13 +11,15 @@ type Params = {
 type useKeplrProps = {
   params: Params;
 };
-type AddNetworkKeplrProps = {
-  params: Params;
+type AddNetworkKeplrProps = useKeplrProps & {
   setKeplr: React.Dispatch<React.SetStateAction<Keplr | undefined>>;
 };
-export function useKeplr({ params }: any): [React.FC, Keplr | undefined] {
+export function useKeplr({ params, cb }: any): [React.FC, ((bytes: Uint8Array) => Promise<StdSignature>) | undefined] {
   const [keplr, setKeplr] = useState<Keplr>();
-  return [AddNetworkKeplr({ params, setKeplr }), keplr];
+  function signerFn(keplr: Keplr | undefined) {
+    return keplr && (async (bytes: Uint8Array) => keplr.signArbitrary(params.chainId, (await keplr.getKey(params.chainId)).name, bytes))
+  }
+  return [AddNetworkKeplr({ params, setKeplr }), signerFn(keplr)];
 }
 
 function AddNetworkKeplr({ params, setKeplr }: AddNetworkKeplrProps): React.FC {
